@@ -7,6 +7,9 @@
 //
 
 #import "AppDelegate.h"
+#import "TwitterAPIClient.h"
+#import "TimelineViewController.h"
+
 
 @implementation AppDelegate
 
@@ -14,10 +17,17 @@
 {
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
+    
+    TimelineViewController *timelinevc = [[TimelineViewController alloc] init];
+    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:timelinevc];
+    self.window.rootViewController = nvc;
+    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:126/255.0f green:208/255.0f blue:252/255.0f alpha:1.0f]];
+    
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     return YES;
 }
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
@@ -44,6 +54,20 @@
 - (void)applicationWillTerminate:(UIApplication *)application
 {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+}
+
+- (BOOL)application:(UIApplication *)application
+            openURL:(NSURL *)url
+  sourceApplication:(NSString *)sourceApplication
+         annotation:(id)annotation
+{
+    
+    if ([url.scheme isEqualToString:@"avtwitter"])
+    {
+        [[TwitterAPIClient instance] handleCallbackWithURL:url];
+        return YES;
+    }
+    return NO;
 }
 
 @end
