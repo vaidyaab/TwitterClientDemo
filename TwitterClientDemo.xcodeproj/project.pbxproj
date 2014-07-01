@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CC31073A1962841900746639 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3107381962841900746639 /* TweetDetailViewController.m */; };
+		CC31073B1962841900746639 /* TweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3107391962841900746639 /* TweetDetailViewController.xib */; };
 		CC496CEE195FD74C004EAEB6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CC496CED195FD74C004EAEB6 /* User.m */; };
 		CC8A7CB51960A3DC00A5E9F0 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8A7CB31960A3DC00A5E9F0 /* TimelineViewController.m */; };
 		CC8A7CB61960A3DC00A5E9F0 /* TimelineViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC8A7CB41960A3DC00A5E9F0 /* TimelineViewController.xib */; };
@@ -47,6 +49,9 @@
 /* Begin PBXFileReference section */
 		446EBA5D71684D8AA66C1897 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		96AE6D44D94E431FAB2D7CD2 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		CC3107371962841900746639 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
+		CC3107381962841900746639 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
+		CC3107391962841900746639 /* TweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TweetDetailViewController.xib; path = TwitterClientDemo/TweetDetailViewController.xib; sourceTree = "<group>"; };
 		CC496CEC195FD74C004EAEB6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		CC496CED195FD74C004EAEB6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
 		CC8A7CB21960A3DC00A5E9F0 /* TimelineViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TimelineViewController.h; sourceTree = "<group>"; };
@@ -135,6 +140,8 @@
 				CC8A7CB31960A3DC00A5E9F0 /* TimelineViewController.m */,
 				CC8A7CBB1960EC6300A5E9F0 /* TweetCell.h */,
 				CC8A7CBC1960EC6300A5E9F0 /* TweetCell.m */,
+				CC3107371962841900746639 /* TweetDetailViewController.h */,
+				CC3107381962841900746639 /* TweetDetailViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -142,6 +149,7 @@
 		CC8A7CBA1960E35B00A5E9F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC3107391962841900746639 /* TweetDetailViewController.xib */,
 				CC8A7CBD1960EC6300A5E9F0 /* TweetCell.xib */,
 				CC8A7CB41960A3DC00A5E9F0 /* TimelineViewController.xib */,
 			);
@@ -328,6 +336,7 @@
 				CC8A7CC919612A2000A5E9F0 /* favorite.png in Resources */,
 				CC8A7CB61960A3DC00A5E9F0 /* TimelineViewController.xib in Resources */,
 				CCB6AA78195F777D00DB2275 /* Images.xcassets in Resources */,
+				CC31073B1962841900746639 /* TweetDetailViewController.xib in Resources */,
 				CC8A7CBF1960EC6300A5E9F0 /* TweetCell.xib in Resources */,
 				CC8A7CCA19612A2000A5E9F0 /* reply.png in Resources */,
 				CC8A7CCB19612A2000A5E9F0 /* retweet.png in Resources */,
@@ -388,6 +397,7 @@
 				CC496CEE195FD74C004EAEB6 /* User.m in Sources */,
 				CC8A7CC21960FA7600A5E9F0 /* Tweet.m in Sources */,
 				CC9CDA1A195FC6B5001CDC41 /* NSURL+dictionaryFromQueryString.m in Sources */,
+				CC31073A1962841900746639 /* TweetDetailViewController.m in Sources */,
 				CC9CDA0F195F8964001CDC41 /* TwitterAPIClient.m in Sources */,
 				CCB6AA72195F777D00DB2275 /* main.m in Sources */,
 				CC8A7CBE1960EC6300A5E9F0 /* TweetCell.m in Sources */,

@@ -12,6 +12,7 @@
 #import "TweetCell.h"
 #import "Tweet.h"
 #import <ODRefreshControl/ODRefreshControl.h>
+#import "TweetDetailViewController.h"
 
 @interface TimelineViewController ()
 
@@ -134,13 +135,22 @@
         }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     
-            NSLog(@"oops! error while fetching timeline tweets.");
+            NSLog(@"oops! error while fetching timeline tweets.%@", [error description]);
         }];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
     return 120;
+    
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    TweetDetailViewController *tweetdetailsvc = [[TweetDetailViewController alloc] init];
+    [tweetdetailsvc setTweet:[self.tweetsArray objectAtIndex:indexPath.row]];
+    [self.navigationController pushViewController:tweetdetailsvc animated:YES];
     
 }
 

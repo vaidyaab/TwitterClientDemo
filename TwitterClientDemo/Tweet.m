@@ -17,6 +17,7 @@
         self.name = data[@"user"][@"name"];
         self.handle = data[@"user"][@"screen_name"];
         self.time = [self calculateElapsedTime:data[@"created_at"]];
+        self.createdAt = data[@"created_at"];
         self.tweet = data[@"text"];
         self.retweetCount = [data[@"retweet_count"] integerValue];
         self.favoriteCount = [data[@"favorite_count"] integerValue];
@@ -76,6 +77,7 @@
     self.tweet = [decoder decodeObjectForKey:@"text"];
     self.retweetCount = [decoder decodeIntegerForKey:@"retweet_count"];
     self.favoriteCount = [decoder decodeIntegerForKey:@"favorite_count"];
+    self.createdAt = [decoder decodeObjectForKey:@"created_At"];
     
     return self;
 }
@@ -88,6 +90,7 @@
     [encoder encodeObject:self.tweet forKey:@"text"];
     [encoder encodeInteger:self.retweetCount forKey:@"retweet_count"];
     [encoder encodeInteger:self.favoriteCount forKey:@"favorite_count"];
+    [encoder encodeObject:self.createdAt forKey:@"created_At"];
 }
 
 @end
