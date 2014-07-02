@@ -8,6 +8,7 @@
 
 #import "TweetDetailViewController.h"
 #import <UIImageView+AFNetworking.h>
+#import "ComposeTweetViewController.h"
 
 @interface TweetDetailViewController ()
 
@@ -43,6 +44,16 @@
 {
     [super viewDidLoad];
     
+    self.navigationItem.title = @"Tweet";
+    
+    UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithTitle:@"Reply" style:UIBarButtonItemStylePlain target:self action:@selector(postReply:)];
+                                    
+    //:UIBarButtonSystemItemCompose target:self action:@selector(postReply:)];
+    
+    //UIBarButtonItem *replyButton = [[UIBarButtonItem alloc] initWithTitl
+    
+    self.navigationItem.rightBarButtonItem = replyButton;
+    
     [self.profileImageView setImageWithURL:[NSURL URLWithString:[self.tweet profileImageURL]]];
     self.userNameLabel.text = [self.tweet name];
     self.userHandleLabel.text = [NSString stringWithFormat:@"@%@",[self.tweet handle]];
@@ -51,16 +62,45 @@
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateFormat:@"EEE MMM dd HH:mm:ss Z yyyy"];
     NSDate *createdDate = [formatter dateFromString:[self.tweet createdAt]];
-    self.createdAtLabel.text = [NSString stringWithFormat:@"%@",createdDate];
+    
+    [formatter setDateFormat:@"MM/dd/yyyy hh:mm a"];
+    NSString *createdDateStr = [formatter stringFromDate:createdDate];
+    self.createdAtLabel.text = [NSString stringWithFormat:@"%@",createdDateStr];
     
     [self.topRetweetImageView setImage:[UIImage imageNamed:@"retweet.png"]];
     [self.replyImageView setImage:[UIImage imageNamed:@"reply.png"]];
+    
+    UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postReplyImageTapped:)];
+    singleTap.numberOfTapsRequired = 1;
+    singleTap.numberOfTouchesRequired = 1;
+    [self.replyImageView addGestureRecognizer:singleTap];
+    [self.replyImageView setUserInteractionEnabled:YES];
+    
+    
     [self.retweetImageView setImage:[UIImage imageNamed:@"retweet.png"]];
     [self.favoriteImageView setImage:[UIImage imageNamed:@"favorite.png"]];
     self.retweetedCountLabel.text = [NSString stringWithFormat:@"%d",[self.tweet retweetCount]];
     self.retweetedTextLabel.text = @"RETWEETS";
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d",[self.tweet favoriteCount]];
     self.favoriteTextLabel.text = @"FAVORITES";
+}
+
+-(IBAction)postReply:(id)sender {
+    NSLog(@"reply clicked.");
+    [self loadComposeView];
+}
+
+- (void) postReplyImageTapped :(UIGestureRecognizer *)gestureRecognizer {
+    
+    NSLog(@"reply image tapped.");
+    [self loadComposeView];
+}
+
+-(void) loadComposeView {
+    
+    ComposeTweetViewController *composeTweetvc = [[ComposeTweetViewController alloc] init];
+    [self.navigationController pushViewController:composeTweetvc animated:YES];
+    
 }
 
 - (void)didReceiveMemoryWarning

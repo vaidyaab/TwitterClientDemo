@@ -10,6 +10,7 @@
 
 @interface Tweet : NSObject <NSCoding>
 
+@property (nonatomic,strong) NSString* tweetId;
 @property (nonatomic,strong) NSString* profileImageURL;
 @property (nonatomic,strong) NSString* name;
 @property (nonatomic,strong) NSString* handle;

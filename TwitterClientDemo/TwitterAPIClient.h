@@ -27,4 +27,11 @@
                             failure:
                                 (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
+- (AFHTTPRequestOperation *)postTweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
 @end

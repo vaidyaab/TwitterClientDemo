@@ -84,4 +84,17 @@
              failure: failure];
 }
 
+- (AFHTTPRequestOperation *)postTweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    return [self POST:@"1.1/statuses/update.json"
+          parameters:params
+             success: success
+             failure: failure];
+}
+
 @end
