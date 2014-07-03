@@ -40,6 +40,11 @@
     }];
 }
 
+-(void) logout {
+    
+    [self.requestSerializer removeAccessToken];
+}
+
 -(void) handleCallbackWithURL:(NSURL*) url{
     
     if ([url.host isEqualToString:@"oauth"])
@@ -95,6 +100,62 @@
           parameters:params
              success: success
              failure: failure];
+}
+
+- (AFHTTPRequestOperation *)postFavoriteStatusWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    return [self POST:@"1.1/favorites/create.json"
+           parameters:params
+              success: success
+              failure: failure];
+}
+
+- (AFHTTPRequestOperation *)postDestroyFavoriteWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    return [self POST:@"1.1/favorites/destroy.json"
+           parameters:params
+              success: success
+              failure: failure];
+}
+
+- (AFHTTPRequestOperation *)postRetweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    NSString *postString = [NSString stringWithFormat:@"1.1/statuses/retweet/%@.json",[params objectForKey:@"id"]];
+    
+    return [self POST:postString
+           parameters:nil
+              success: success
+              failure: failure];
+}
+
+- (AFHTTPRequestOperation *)postDestroyTweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    NSString *postString = [NSString stringWithFormat:@"1.1/statuses/destroy/%@.json",[params objectForKey:@"id"]];
+    
+    return [self POST:postString
+           parameters:nil
+              success: success
+              failure: failure];
 }
 
 @end

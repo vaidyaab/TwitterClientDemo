@@ -9,6 +9,8 @@
 #import "TweetCell.h"
 #import <UIImageView+AFNetworking.h>
 #import "Tweet.h"
+#import "ComposeTweetViewController.h"
+#import "TwitterAPIClient.h"
 
 @interface TweetCell()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -21,8 +23,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *retweetCountLabel;
 @property (weak, nonatomic) IBOutlet UIImageView *favoriteImageView;
 @property (weak, nonatomic) IBOutlet UILabel *favoriteCountLabel;
-
-
+@property (strong,nonatomic) UIViewController* parent;
+@property (strong,nonatomic) Tweet* origTweet;
+@property (strong,nonatomic) NSString *retweetId;
 @end
 
 @implementation TweetCell
@@ -40,7 +43,7 @@
     // Configure the view for the selected state
 }
 
--(void) initializeFromTweetData:(Tweet*) tweet{
+-(void) initializeFromTweetData:(Tweet*) tweet currentParent: (UIViewController*) parent {
  
     [self.profileImageView setImageWithURL:[NSURL URLWithString:[tweet profileImageURL]]];
     self.nameLabel.text = [tweet name];
@@ -52,6 +55,121 @@
     [self.favoriteImageView setImage:[UIImage imageNamed:@"favorite.png"]];
     self.retweetCountLabel.text = [NSString stringWithFormat:@"%d",[tweet retweetCount]];
     self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d",[tweet favoriteCount]];
+    [self.favoriteImageView setTag:0];
+    self.origTweet = tweet;
+    self.parent = parent;
+    
+    UITapGestureRecognizer *replyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postReplyImageTapped:)];
+    replyTap.numberOfTapsRequired = 1;
+    replyTap.numberOfTouchesRequired = 1;
+    [self.replyImageView addGestureRecognizer:replyTap];
+    [self.replyImageView setUserInteractionEnabled:YES];
+    
+    UITapGestureRecognizer *favoriteTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postFavoriteImageTapped:)];
+    favoriteTap.numberOfTapsRequired = 1;
+    favoriteTap.numberOfTouchesRequired = 1;
+    [self.favoriteImageView addGestureRecognizer:favoriteTap];
+    [self.favoriteImageView setUserInteractionEnabled:YES];
+    
+    
+    UITapGestureRecognizer *retweetTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postRetweetImageTapped:)];
+    retweetTap.numberOfTapsRequired = 1;
+    retweetTap.numberOfTouchesRequired = 1;
+    [self.retweetImageView addGestureRecognizer:retweetTap];
+    [self.retweetImageView setUserInteractionEnabled:YES];
+    [self.retweetImageView setTag:0];
+    
+}
+
+- (void) postReplyImageTapped :(UIGestureRecognizer *)gestureRecognizer {
+    
+    NSLog(@"reply image tapped.");
+    ComposeTweetViewController *composeTweetvc = [[ComposeTweetViewController alloc] init];
+    [composeTweetvc setOriginalTweet:self.origTweet];
+    [self.parent.navigationController pushViewController:composeTweetvc animated:YES];
+}
+
+- (void) postFavoriteImageTapped :(UIGestureRecognizer *)gestureRecognizer {
+    
+    NSLog(@"favorite image tapped.");
+    
+    NSMutableDictionary *tweetParams = [[NSMutableDictionary alloc] init];
+    [tweetParams setObject:[self.origTweet tweetId] forKey:@"id"];
+    
+    if(self.favoriteImageView.tag == 0){
+        
+        [[TwitterAPIClient instance] postFavoriteStatusWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self.favoriteImageView setImage:[UIImage imageNamed:@"favorite_f.png"]];
+            self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d",[self.favoriteCountLabel.text intValue] + 1 ];
+            self.favoriteImageView.tag = 1;
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"unable to mark a tweet as favorite");
+            
+        } parameters:[[NSDictionary alloc] initWithDictionary:tweetParams]];
+        
+    }else{
+        
+        [[TwitterAPIClient instance] postDestroyFavoriteWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            [self.favoriteImageView setImage:[UIImage imageNamed:@"favorite.png"]];
+            self.favoriteCountLabel.text = [NSString stringWithFormat:@"%d",[self.favoriteCountLabel.text intValue] - 1 ];
+            self.favoriteImageView.tag = 0;
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"unable to undo a favorite");
+            
+        } parameters:[[NSDictionary alloc] initWithDictionary:tweetParams]];
+    }
+    
+   
+}
+
+- (void) postRetweetImageTapped :(UIGestureRecognizer *)gestureRecognizer {
+    
+    NSLog(@"retweet image tapped.");
+    
+    NSMutableDictionary *tweetParams = [[NSMutableDictionary alloc] init];
+    [tweetParams setObject:[self.origTweet tweetId] forKey:@"id"];
+    
+    if(self.retweetImageView.tag == 0){
+        
+        [[TwitterAPIClient instance] postRetweetWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+            
+            self.retweetCountLabel.text = [NSString stringWithFormat:@"%d",[self.retweetCountLabel.text intValue] + 1 ];
+            self.retweetImageView.tag = 1;
+            self.retweetId = responseObject[@"id"];
+            
+        } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+            
+            NSLog(@"unable to retweet");
+            
+        } parameters:[[NSDictionary alloc] initWithDictionary:tweetParams]];
+        
+    }else{
+        
+        if(self.retweetId){
+            
+            [tweetParams setObject:self.retweetId forKey:@"id"];
+            
+            [[TwitterAPIClient instance] postDestroyTweetWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+                
+                self.retweetCountLabel.text = [NSString stringWithFormat:@"%d",[self.retweetCountLabel.text intValue] - 1 ];
+                self.retweetImageView.tag = 0;
+                
+            } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+                
+                NSLog(@"unable to destroy a retweet");
+                
+            } parameters:[[NSDictionary alloc] initWithDictionary:tweetParams]];
+        
+        }
+        
+    }
+    
     
 }
 

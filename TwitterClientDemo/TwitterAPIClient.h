@@ -14,6 +14,8 @@
 
 -(void) login;
 
+-(void) logout;
+
 -(void) handleCallbackWithURL:(NSURL*) url;
 
 - (AFHTTPRequestOperation *)homeTimeLineWithSuccess:
@@ -28,6 +30,34 @@
                                 (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure;
 
 - (AFHTTPRequestOperation *)postTweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
+- (AFHTTPRequestOperation *)postFavoriteStatusWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
+- (AFHTTPRequestOperation *)postDestroyFavoriteWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
+- (AFHTTPRequestOperation *)postRetweetWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
+- (AFHTTPRequestOperation *)postDestroyTweetWithSuccess:
                                 (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
                             failure:
                                 (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure

@@ -13,6 +13,7 @@
 #import "Tweet.h"
 #import <ODRefreshControl/ODRefreshControl.h>
 #import "TweetDetailViewController.h"
+#import "ComposeTweetViewController.h"
 
 @interface TimelineViewController ()
 
@@ -56,6 +57,10 @@
         self.navigationItem.rightBarButtonItem = tweetButton;
         
         self.navigationItem.title = @"Home";
+        
+        [self loadHomeTimeline];
+        
+        [self addRefreshControlToTimeline];
 
         
     }else{
@@ -82,10 +87,6 @@
     self.timelineTableView.delegate = self;
     self.timelineTableView.dataSource = self;
     [self.timelineTableView registerNib:[UINib nibWithNibName:@"TweetCell" bundle:nil] forCellReuseIdentifier:@"TweetCell"];
-    
-    [self loadHomeTimeline];
-    
-    [self addRefreshControlToTimeline];
     
 }
 
@@ -118,7 +119,7 @@
     
         [[TwitterAPIClient instance] homeTimeLineWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
     
-            //NSLog(@"Got home timeline response: ");
+            //NSLog(@"Got home timeline response: %@", responseObject);
                         
             self.tweetsArray = [[NSMutableArray alloc] initWithCapacity:20];
             Tweet *tempTweet;
@@ -158,7 +159,7 @@
     
     static NSString *CellIdentifier = @"TweetCell";
     TweetCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
-    [cell initializeFromTweetData:[self.tweetsArray objectAtIndex:indexPath.row]];
+    [cell initializeFromTweetData:[self.tweetsArray objectAtIndex:indexPath.row] currentParent:self];
     
     return cell;
 }
@@ -179,12 +180,13 @@
     NSLog(@"logout clicked!");
     self.navigationItem.title = @"";
     self.navigationItem.rightBarButtonItem = nil;
+    [[TwitterAPIClient instance] logout];
 }
 
 - (IBAction)onTweetButton:(id)sender {
     
-    NSLog(@"New tweet clicked!");
-    
+    ComposeTweetViewController *composeTweetvc = [[ComposeTweetViewController alloc] init];
+    [self.navigationController pushViewController:composeTweetvc animated:YES];
 }
 
 -(void) dealloc{

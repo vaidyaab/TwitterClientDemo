@@ -11,6 +11,6 @@
 
 @interface TweetCell : UITableViewCell
 
--(void) initializeFromTweetData:(Tweet*) tweet;
+-(void) initializeFromTweetData:(Tweet*) tweet currentParent:(UIViewController*) parent;
 
 @end
