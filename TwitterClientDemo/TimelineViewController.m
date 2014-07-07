@@ -146,7 +146,7 @@
     if([currentCell retweetedBy]){
         return 130;
     }else{
-        return 120;
+        return 110;
     }
 }
 
