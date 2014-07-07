@@ -69,7 +69,6 @@
     NSString *createdDateStr = [formatter stringFromDate:createdDate];
     self.createdAtLabel.text = [NSString stringWithFormat:@"%@",createdDateStr];
     
-    [self.topRetweetImageView setImage:[UIImage imageNamed:@"retweet.png"]];
     [self.replyImageView setImage:[UIImage imageNamed:@"reply.png"]];
     
     UITapGestureRecognizer *singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postReplyImageTapped:)];
@@ -99,6 +98,13 @@
     retweetTap.numberOfTouchesRequired = 1;
     [self.retweetImageView addGestureRecognizer:retweetTap];
     [self.retweetImageView setUserInteractionEnabled:YES];
+    
+    if([self.tweet retweetedBy]){
+        [self.topRetweetImageView setImage:[UIImage imageNamed:@"retweet.png"]];
+        self.retweetedUserLabel.text = [NSString stringWithFormat:@"Retweeted by %@",[self.tweet retweetedBy]];
+    }else{
+        self.retweetedUserLabel.text = @"";
+    }
 }
 
 -(IBAction)postReply:(id)sender {

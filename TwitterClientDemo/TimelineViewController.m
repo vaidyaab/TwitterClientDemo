@@ -142,8 +142,12 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    return 120;
-    
+    Tweet *currentCell = [self.tweetsArray objectAtIndex:indexPath.row];
+    if([currentCell retweetedBy]){
+        return 130;
+    }else{
+        return 120;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {

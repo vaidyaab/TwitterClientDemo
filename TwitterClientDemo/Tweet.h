@@ -19,6 +19,7 @@
 @property (nonatomic,strong) NSString* createdAt;
 @property int retweetCount;
 @property int favoriteCount;
+@property (nonatomic,strong) NSString* retweetedBy;
 
 -(id) initWithDictionary:(NSDictionary*) data;
 

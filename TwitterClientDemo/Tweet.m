@@ -22,6 +22,7 @@
         self.retweetCount = [data[@"retweet_count"] integerValue];
         self.favoriteCount = [data[@"favorite_count"] integerValue];
         self.tweetId = data[@"id_str"];
+        self.retweetedBy = data[@"retweeted_status"][@"user"][@"name"];
 
     }
     return self;
@@ -80,6 +81,7 @@
     self.favoriteCount = [decoder decodeIntegerForKey:@"favorite_count"];
     self.createdAt = [decoder decodeObjectForKey:@"created_At"];
     self.tweetId = [decoder decodeObjectForKey:@"id_str"];
+    self.retweetedBy = [decoder decodeObjectForKey:@"retweeted_by"];
 
     
     return self;
@@ -95,6 +97,7 @@
     [encoder encodeInteger:self.favoriteCount forKey:@"favorite_count"];
     [encoder encodeObject:self.createdAt forKey:@"created_At"];
     [encoder encodeObject:self.tweetId forKey:@"id_str"];
+    [encoder encodeObject:self.retweetedBy forKey:@"retweeted_by"];
 
 }
 

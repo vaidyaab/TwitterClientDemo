@@ -26,6 +26,14 @@
 @property (strong,nonatomic) UIViewController* parent;
 @property (strong,nonatomic) Tweet* origTweet;
 @property (strong,nonatomic) NSString *retweetId;
+@property (weak, nonatomic) IBOutlet UILabel *retweetedBy;
+@property (weak, nonatomic) IBOutlet UIImageView *retweetedByImageView;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *retweetedLabelHeight;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *nameMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *profileImageMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *handleMargin;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *timeMargin;
+
 @end
 
 @implementation TweetCell
@@ -79,6 +87,14 @@
     [self.retweetImageView setUserInteractionEnabled:YES];
     [self.retweetImageView setTag:0];
     
+    if([tweet retweetedBy]){
+        [self.retweetedByImageView setImage:[UIImage imageNamed:@"retweet.png"]];
+        self.retweetedBy.text = [NSString stringWithFormat:@"%@ retweeted",[tweet retweetedBy]];
+    }
+    else{
+        self.retweetedBy.text = @"";
+        [self.retweetedByImageView setImage:nil];
+    }
 }
 
 - (void) postReplyImageTapped :(UIGestureRecognizer *)gestureRecognizer {
@@ -171,6 +187,26 @@
     }
     
     
+}
+
+- (void)layoutSubviews {
+    [super layoutSubviews];
+    if([self.origTweet retweetedBy]){
+        self.nameMargin.constant = 31.0f;
+        self.profileImageMargin.constant = 31.0f;
+        self.handleMargin.constant = 31.0f;
+        self.timeMargin.constant = 31.0f;
+    }else{
+        
+        self.nameMargin.constant = 10.0f;
+        self.profileImageMargin.constant = 10.0f;
+        self.handleMargin.constant = 10.0f;
+        self.timeMargin.constant = 10.0f;
+        
+    }
+    [self layoutIfNeeded];
+    
+   
 }
 
 @end
