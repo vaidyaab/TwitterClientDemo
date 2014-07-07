@@ -115,7 +115,7 @@
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="112" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cOe-dJ-jWZ" userLabel="fav count">
-                        <rect key="frame" x="237" y="112" width="24" height="16"/>
+                        <rect key="frame" x="237" y="110" width="24" height="16"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="24" id="09u-F3-U7z"/>
@@ -129,7 +129,7 @@
                     <constraint firstItem="gf0-dl-mXx" firstAttribute="leading" secondItem="b1j-p8-ypK" secondAttribute="trailing" constant="30" id="0Fr-s3-Z8f"/>
                     <constraint firstItem="OE7-QI-xik" firstAttribute="leading" secondItem="EbF-Dq-wyq" secondAttribute="trailing" constant="8" id="9ve-RN-EbM"/>
                     <constraint firstItem="UDT-jV-G1b" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="BJS-iz-AxZ"/>
-                    <constraint firstItem="cOe-dJ-jWZ" firstAttribute="top" secondItem="XF9-nN-oHr" secondAttribute="bottom" constant="5" id="Bdj-Na-X1m"/>
+                    <constraint firstItem="cOe-dJ-jWZ" firstAttribute="top" secondItem="XF9-nN-oHr" secondAttribute="bottom" constant="3" id="Bdj-Na-X1m"/>
                     <constraint firstItem="wXM-Bl-QDa" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="31" id="GWU-yt-vCa"/>
                     <constraint firstItem="EbF-Dq-wyq" firstAttribute="leading" secondItem="wXM-Bl-QDa" secondAttribute="trailing" constant="8" id="MDM-kg-9p3"/>
                     <constraint firstAttribute="trailing" secondItem="UDT-jV-G1b" secondAttribute="trailing" constant="7" id="Mf2-mw-YIT"/>
