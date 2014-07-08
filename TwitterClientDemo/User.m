@@ -21,11 +21,13 @@ static User* _currentUser = nil;
     if(_currentUser == nil){
         
         NSData *data = [[NSUserDefaults standardUserDefaults] objectForKey:currentUserKey];
-        
+
         if(data){
-        
+            NSLog(@"got data");
             _currentUser = [NSKeyedUnarchiver unarchiveObjectWithData:data];
-            
+            return _currentUser;
+        }else{
+            return nil;
         }
     }
     return _currentUser;
@@ -49,6 +51,10 @@ static User* _currentUser = nil;
                                  }
      ];
     
+}
+
++(void) resetCurrentUser {
+    _currentUser = nil;
 }
 
 -(id) initWithDictionary:(NSDictionary*) data{

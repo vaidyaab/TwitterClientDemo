@@ -22,6 +22,7 @@ extern NSString * const currentUserKey;
 
 +(User*) currentUser;
 +(void) setCurrentUser;
++(void) resetCurrentUser;
 
 -(id) initWithDictionary:(NSDictionary*) data;
 

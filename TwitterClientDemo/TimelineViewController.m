@@ -136,7 +136,7 @@
         }
         failure:^(AFHTTPRequestOperation *operation, NSError *error) {
     
-            NSLog(@"oops! error while fetching timeline tweets.%@", [error description]);
+            NSLog(@"oops! error while fetching timeline tweets.");
         }];
 }
 
@@ -185,6 +185,15 @@
     self.navigationItem.title = @"";
     self.navigationItem.rightBarButtonItem = nil;
     [[TwitterAPIClient instance] logout];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:currentUserKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [User resetCurrentUser];
+//    NSLog(@"user logged out. sending notification to update view");
+//    NSNotification *notification = [NSNotification notificationWithName:UserLoggedOutNotification object:nil];
+//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+    [self updateCurrentView];
+    [self.tweetsArray removeAllObjects];
+    [self.timelineTableView reloadData];
 }
 
 - (IBAction)onTweetButton:(id)sender {
