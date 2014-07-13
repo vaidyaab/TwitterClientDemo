@@ -9,7 +9,18 @@
 #import <UIKit/UIKit.h>
 #import "Tweet.h"
 
+//---- A way of handling UITableViewCell clicks
+//@class TweetCell;
+//
+//@protocol TweetCellDelegate <NSObject>
+//
+//-(void) onTapRetweetForTweetCell :(TweetCell*) cell;
+//
+//@end
+
 @interface TweetCell : UITableViewCell
+
+//@property (nonatomic, weak) id<TweetCellDelegate> delegate;
 
 -(void) initializeFromTweetData:(Tweet*) tweet currentParent:(UIViewController*) parent;
 

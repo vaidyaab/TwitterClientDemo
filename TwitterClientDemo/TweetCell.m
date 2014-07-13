@@ -7,7 +7,7 @@
 //
 
 #import "TweetCell.h"
-#import <UIImageView+AFNetworking.h>
+#import "UIImageView+AFNetworking.h"
 #import "Tweet.h"
 #import "ComposeTweetViewController.h"
 #import "TwitterAPIClient.h"
