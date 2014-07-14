@@ -30,6 +30,16 @@
     self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
     if (self) {
         // Custom initialization
+        TimelineViewController *timelinevc = [[TimelineViewController alloc] init];
+        self.contentView = [[UINavigationController alloc] initWithRootViewController:timelinevc];
+        [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:126/255.0f green:208/255.0f blue:252/255.0f alpha:1.0f]];
+        timelinevc.hbDelegate = self;
+        
+        self.contentView.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
+        
+        [self addChildViewController:self.contentView];
+        [self.view addSubview:self.contentView.view];
+        
     }
     return self;
 }
@@ -38,14 +48,6 @@
 {
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
-    TimelineViewController *timelinevc = [[TimelineViewController alloc] init];
-    self.contentView = [[UINavigationController alloc] initWithRootViewController:timelinevc];
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:126/255.0f green:208/255.0f blue:252/255.0f alpha:1.0f]];
-    
-    self.contentView.view.frame = CGRectMake(0, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
-    
-    [self addChildViewController:self.contentView];
-    [self.view addSubview:self.contentView.view];
     
     self.isMenuHidden = YES;
     

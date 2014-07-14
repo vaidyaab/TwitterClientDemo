@@ -52,7 +52,6 @@
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed: @"hamburgerMenu.png"];
         [button setBackgroundImage: img forState:UIControlStateNormal];
-        [button addTarget:self.hbDelegate action:@selector(onHBMenuTap) forControlEvents: UIControlEventTouchUpInside];
         button.frame= CGRectMake(0.0, 0.0, 16,16);
         UIBarButtonItem *hbMenuButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         
@@ -195,11 +194,12 @@
     [[TwitterAPIClient instance] login];
 }
 
-- (IBAction)onLogoutButton:(id)sender {
-    
-    NSLog(@"logout clicked!");
 
-    [self updateCurrentView];
+- (IBAction)showHamBurgerMenu:(UIPanGestureRecognizer *)panGestureRecognizer {
+    
+    if(panGestureRecognizer.state == UIGestureRecognizerStateEnded){
+        [self.hbDelegate onHBMenuTap];
+    }
 
 }
 
