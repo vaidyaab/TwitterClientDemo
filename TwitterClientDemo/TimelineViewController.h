@@ -12,6 +12,7 @@
 @protocol HamBurgerMenuDelegate <NSObject>
 
 -(void) onHBMenuTap;
+-(BOOL) isMenuDisplayed;
 
 @end
 

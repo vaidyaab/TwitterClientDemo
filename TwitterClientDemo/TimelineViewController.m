@@ -47,8 +47,6 @@
 //        UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
 //        self.navigationItem.leftBarButtonItem = logoutButton;
         
-        
-        
         UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
         UIImage *img = [UIImage imageNamed: @"hamburgerMenu.png"];
         [button setBackgroundImage: img forState:UIControlStateNormal];
@@ -164,6 +162,13 @@
         return 110;
     }
 }
+- (IBAction)dismissMenu:(UITapGestureRecognizer *)sender {
+    
+    if([self.hbDelegate isMenuDisplayed]){
+        [self.hbDelegate onHBMenuTap];
+    }
+    [sender setCancelsTouchesInView: NO];
+}
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
@@ -199,11 +204,13 @@
     
     if(panGestureRecognizer.state == UIGestureRecognizerStateEnded){
         [self.hbDelegate onHBMenuTap];
+
     }
 
 }
 
 - (IBAction)onTweetButton:(id)sender {
+    
     
     ComposeTweetViewController *composeTweetvc = [[ComposeTweetViewController alloc] init];
     [self.navigationController pushViewController:composeTweetvc animated:YES];

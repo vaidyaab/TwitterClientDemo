@@ -11,6 +11,7 @@
 #import "Tweet.h"
 #import "ComposeTweetViewController.h"
 #import "TwitterAPIClient.h"
+#import "TimelineViewController.h"
 
 @interface TweetCell()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -102,6 +103,11 @@
     NSLog(@"reply image tapped.");
     ComposeTweetViewController *composeTweetvc = [[ComposeTweetViewController alloc] init];
     [composeTweetvc setOriginalTweet:self.origTweet];
+    [gestureRecognizer setCancelsTouchesInView:NO];
+    
+    if([((TimelineViewController*)self.parent).hbDelegate isMenuDisplayed]){
+        [((TimelineViewController*)self.parent).hbDelegate onHBMenuTap];
+    }
     [self.parent.navigationController pushViewController:composeTweetvc animated:YES];
 }
 
@@ -141,7 +147,6 @@
         } parameters:[[NSDictionary alloc] initWithDictionary:tweetParams]];
     }
     
-   
 }
 
 - (void) postRetweetImageTapped :(UIGestureRecognizer *)gestureRecognizer {

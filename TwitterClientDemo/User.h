@@ -19,6 +19,7 @@ extern NSString * const currentUserKey;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *profileImageUrl;
 @property (strong, nonatomic) NSString *screenName;
+@property (strong, nonatomic) NSString *backgroundImageURL;
 
 +(User*) currentUser;
 +(void) setCurrentUser;

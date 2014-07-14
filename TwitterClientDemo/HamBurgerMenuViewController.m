@@ -55,7 +55,6 @@
     self.menuTableView.dataSource = self;
     
     [self.menuView setBackgroundColor:[UIColor colorWithRed:0/255.0f green:16/255.0f blue:15/255.0f alpha:1.0f]];
-    
     self.userNameLabel.text = [[User currentUser] name];
     self.userHandleLabel.text = [NSString stringWithFormat:@"@%@",[[User currentUser] screenName]];
     [self.userProfileImageView setImageWithURL:[NSURL URLWithString:[[User currentUser] profileImageUrl]]];
@@ -70,6 +69,14 @@
 -(void) onHBMenuTap{
 
     CGRect newFrame;
+    
+    if(!self.userNameLabel.text){
+    
+        self.userNameLabel.text = [[User currentUser] name];
+        self.userHandleLabel.text = [NSString stringWithFormat:@"@%@",[[User currentUser] screenName]];
+        [self.userProfileImageView setImageWithURL:[NSURL URLWithString:[[User currentUser] profileImageUrl]]];
+    }
+    
 
     if(self.isMenuHidden){
         newFrame = CGRectMake(180, 0, [[UIScreen mainScreen] bounds].size.width, [[UIScreen mainScreen] bounds].size.height);
@@ -108,7 +115,7 @@
             NSLog(@"profile clicked!");
             break;
         case 3:
-            self.isMenuHidden = !self.isMenuHidden;
+            [self onHBMenuTap];
             [[TwitterAPIClient instance] logout];
             break;
             
@@ -116,6 +123,10 @@
             break;
     }
     
+}
+
+-(BOOL) isMenuDisplayed {
+    return !self.isMenuHidden;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

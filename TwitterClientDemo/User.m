@@ -65,6 +65,7 @@ static User* _currentUser = nil;
         self.name = data[@"name"];
         self.screenName = data[@"screen_name"];
         self.profileImageUrl = data[@"profile_image_url"];
+        self.backgroundImageURL = data[@"profile_background_image_url"];
     }
     return self;
 }
@@ -83,6 +84,7 @@ static User* _currentUser = nil;
     self.name = [decoder decodeObjectForKey:@"name"];
     self.screenName = [decoder decodeObjectForKey:@"screen_name"];
     self.profileImageUrl = [decoder decodeObjectForKey:@"profile_image_url"];
+    self.backgroundImageURL = [decoder decodeObjectForKey:@"profile_background_image_url"];
     
     return self;
 }
@@ -93,6 +95,7 @@ static User* _currentUser = nil;
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.screenName forKey:@"screen_name"];
     [encoder encodeObject:self.profileImageUrl forKey:@"profile_image_url"];
+    [encoder encodeObject:self.backgroundImageURL forKey:@"profile_background_image_url"];
 }
 
 
