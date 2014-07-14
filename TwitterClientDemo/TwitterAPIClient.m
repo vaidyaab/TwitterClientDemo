@@ -43,6 +43,11 @@
 -(void) logout {
     
     [self.requestSerializer removeAccessToken];
+    [[NSUserDefaults standardUserDefaults] removeObjectForKey:currentUserKey];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    [User resetCurrentUser];
+    NSNotification *notification = [NSNotification notificationWithName:UserLoggedOutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] postNotification:notification];
 }
 
 -(void) handleCallbackWithURL:(NSURL*) url{

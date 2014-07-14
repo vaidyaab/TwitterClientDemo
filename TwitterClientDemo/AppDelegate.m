@@ -9,7 +9,7 @@
 #import "AppDelegate.h"
 #import "TwitterAPIClient.h"
 #import "TimelineViewController.h"
-
+#import "HamBurgerMenuViewController.h"
 
 @implementation AppDelegate
 
@@ -18,10 +18,9 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     
-    TimelineViewController *timelinevc = [[TimelineViewController alloc] init];
-    UINavigationController *nvc = [[UINavigationController alloc] initWithRootViewController:timelinevc];
-    self.window.rootViewController = nvc;
-    [[UINavigationBar appearance] setBarTintColor:[UIColor colorWithRed:126/255.0f green:208/255.0f blue:252/255.0f alpha:1.0f]];
+    HamBurgerMenuViewController *hbvc = [[HamBurgerMenuViewController alloc] init];
+    
+    self.window.rootViewController = hbvc;
     
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];

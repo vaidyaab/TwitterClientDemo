@@ -12,6 +12,9 @@
 		CC445ADD196BA43F005B566C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CC445ADC196BA43F005B566C /* README.md */; };
 		CC445ADF196BA711005B566C /* twitterdemo.gif in Resources */ = {isa = PBXBuildFile; fileRef = CC445ADE196BA711005B566C /* twitterdemo.gif */; };
 		CC496CEE195FD74C004EAEB6 /* User.m in Sources */ = {isa = PBXBuildFile; fileRef = CC496CED195FD74C004EAEB6 /* User.m */; };
+		CC65D89C1973500600C8D738 /* HamBurgerMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC65D89A1973500600C8D738 /* HamBurgerMenuViewController.m */; };
+		CC65D89D1973500600C8D738 /* HamBurgerMenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC65D89B1973500600C8D738 /* HamBurgerMenuViewController.xib */; };
+		CC65D89F197351DB00C8D738 /* hamburgerMenu.png in Resources */ = {isa = PBXBuildFile; fileRef = CC65D89E197351DB00C8D738 /* hamburgerMenu.png */; };
 		CC7628E61963DF2F00D280E5 /* ComposeTweetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC7628E41963DF2F00D280E5 /* ComposeTweetViewController.m */; };
 		CC7628E71963DF2F00D280E5 /* ComposeTweetViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC7628E51963DF2F00D280E5 /* ComposeTweetViewController.xib */; };
 		CC8A7CB51960A3DC00A5E9F0 /* TimelineViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC8A7CB31960A3DC00A5E9F0 /* TimelineViewController.m */; };
@@ -60,6 +63,10 @@
 		CC445ADE196BA711005B566C /* twitterdemo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = twitterdemo.gif; sourceTree = "<group>"; };
 		CC496CEC195FD74C004EAEB6 /* User.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = User.h; sourceTree = "<group>"; };
 		CC496CED195FD74C004EAEB6 /* User.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = User.m; sourceTree = "<group>"; };
+		CC65D8991973500600C8D738 /* HamBurgerMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HamBurgerMenuViewController.h; sourceTree = "<group>"; };
+		CC65D89A1973500600C8D738 /* HamBurgerMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HamBurgerMenuViewController.m; sourceTree = "<group>"; };
+		CC65D89B1973500600C8D738 /* HamBurgerMenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = HamBurgerMenuViewController.xib; path = TwitterClientDemo/HamBurgerMenuViewController.xib; sourceTree = "<group>"; };
+		CC65D89E197351DB00C8D738 /* hamburgerMenu.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hamburgerMenu.png; sourceTree = "<group>"; };
 		CC7628E31963DF2F00D280E5 /* ComposeTweetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ComposeTweetViewController.h; sourceTree = "<group>"; };
 		CC7628E41963DF2F00D280E5 /* ComposeTweetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ComposeTweetViewController.m; sourceTree = "<group>"; };
 		CC7628E51963DF2F00D280E5 /* ComposeTweetViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ComposeTweetViewController.xib; path = TwitterClientDemo/ComposeTweetViewController.xib; sourceTree = "<group>"; };
@@ -153,6 +160,8 @@
 				CC3107381962841900746639 /* TweetDetailViewController.m */,
 				CC7628E31963DF2F00D280E5 /* ComposeTweetViewController.h */,
 				CC7628E41963DF2F00D280E5 /* ComposeTweetViewController.m */,
+				CC65D8991973500600C8D738 /* HamBurgerMenuViewController.h */,
+				CC65D89A1973500600C8D738 /* HamBurgerMenuViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -160,6 +169,7 @@
 		CC8A7CBA1960E35B00A5E9F0 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CC65D89B1973500600C8D738 /* HamBurgerMenuViewController.xib */,
 				CC3107391962841900746639 /* TweetDetailViewController.xib */,
 				CC8A7CBD1960EC6300A5E9F0 /* TweetCell.xib */,
 				CC7628E51963DF2F00D280E5 /* ComposeTweetViewController.xib */,
@@ -172,6 +182,7 @@
 		CC8A7CC31961297600A5E9F0 /* images */ = {
 			isa = PBXGroup;
 			children = (
+				CC65D89E197351DB00C8D738 /* hamburgerMenu.png */,
 				CC8A7CC419612A2000A5E9F0 /* favorite_f.png */,
 				CC8A7CC519612A2000A5E9F0 /* favorite.png */,
 				CC8A7CC619612A2000A5E9F0 /* reply.png */,
@@ -348,7 +359,9 @@
 			files = (
 				CCB6AA70195F777D00DB2275 /* InfoPlist.strings in Resources */,
 				CC8A7CC919612A2000A5E9F0 /* favorite.png in Resources */,
+				CC65D89D1973500600C8D738 /* HamBurgerMenuViewController.xib in Resources */,
 				CC8A7CB61960A3DC00A5E9F0 /* TimelineViewController.xib in Resources */,
+				CC65D89F197351DB00C8D738 /* hamburgerMenu.png in Resources */,
 				CCB6AA78195F777D00DB2275 /* Images.xcassets in Resources */,
 				CC31073B1962841900746639 /* TweetDetailViewController.xib in Resources */,
 				CC7628E71963DF2F00D280E5 /* ComposeTweetViewController.xib in Resources */,
@@ -414,6 +427,7 @@
 				CC496CEE195FD74C004EAEB6 /* User.m in Sources */,
 				CC7628E61963DF2F00D280E5 /* ComposeTweetViewController.m in Sources */,
 				CC8A7CC21960FA7600A5E9F0 /* Tweet.m in Sources */,
+				CC65D89C1973500600C8D738 /* HamBurgerMenuViewController.m in Sources */,
 				CC9CDA1A195FC6B5001CDC41 /* NSURL+dictionaryFromQueryString.m in Sources */,
 				CC31073A1962841900746639 /* TweetDetailViewController.m in Sources */,
 				CC9CDA0F195F8964001CDC41 /* TwitterAPIClient.m in Sources */,

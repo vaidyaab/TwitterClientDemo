@@ -38,14 +38,25 @@
     NSLog(@"inside updateCurrentView");
     if([User currentUser]){
         NSLog(@"user found");
-        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
-        button.frame = CGRectMake(0, 10, 50, 30);
-        [button setTitle:@"Logout" forState:UIControlStateNormal];
-        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
-        [button.titleLabel setFont:[UIFont fontWithName: @"HelveticaNeue" size:15.0]];
-        [button addTarget:self action:@selector(onLogoutButton:) forControlEvents: UIControlEventTouchUpInside];
-        UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
-        self.navigationItem.leftBarButtonItem = logoutButton;
+//        UIButton *button = [UIButton buttonWithType:UIButtonTypeRoundedRect];
+//        button.frame = CGRectMake(0, 10, 50, 30);
+//        [button setTitle:@"Logout" forState:UIControlStateNormal];
+//        [button setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
+//        [button.titleLabel setFont:[UIFont fontWithName: @"HelveticaNeue" size:15.0]];
+//        [button addTarget:self action:@selector(onLogoutButton:) forControlEvents: UIControlEventTouchUpInside];
+//        UIBarButtonItem *logoutButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+//        self.navigationItem.leftBarButtonItem = logoutButton;
+        
+        
+        
+        UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+        UIImage *img = [UIImage imageNamed: @"hamburgerMenu.png"];
+        [button setBackgroundImage: img forState:UIControlStateNormal];
+        [button addTarget:self.hbDelegate action:@selector(onHBMenuTap) forControlEvents: UIControlEventTouchUpInside];
+        button.frame= CGRectMake(0.0, 0.0, 16,16);
+        UIBarButtonItem *hbMenuButton = [[UIBarButtonItem alloc] initWithCustomView:button];
+        
+        self.navigationItem.leftBarButtonItem = hbMenuButton;
         
         UIButton *tButton = [UIButton buttonWithType:UIButtonTypeRoundedRect];
         tButton.frame = CGRectMake(0, 10, 50, 30);
@@ -75,6 +86,11 @@
         UIBarButtonItem *loginButton = [[UIBarButtonItem alloc] initWithCustomView:button];
         self.navigationItem.leftBarButtonItem = loginButton;
         
+        self.navigationItem.title = @"";
+        self.navigationItem.rightBarButtonItem = nil;
+     
+        [self.tweetsArray removeAllObjects];
+        [self.timelineTableView reloadData];
     }
     
 }
@@ -182,18 +198,9 @@
 - (IBAction)onLogoutButton:(id)sender {
     
     NSLog(@"logout clicked!");
-    self.navigationItem.title = @"";
-    self.navigationItem.rightBarButtonItem = nil;
-    [[TwitterAPIClient instance] logout];
-    [[NSUserDefaults standardUserDefaults] removeObjectForKey:currentUserKey];
-    [[NSUserDefaults standardUserDefaults] synchronize];
-    [User resetCurrentUser];
-//    NSLog(@"user logged out. sending notification to update view");
-//    NSNotification *notification = [NSNotification notificationWithName:UserLoggedOutNotification object:nil];
-//    [[NSNotificationCenter defaultCenter] postNotification:notification];
+
     [self updateCurrentView];
-    [self.tweetsArray removeAllObjects];
-    [self.timelineTableView reloadData];
+
 }
 
 - (IBAction)onTweetButton:(id)sender {
