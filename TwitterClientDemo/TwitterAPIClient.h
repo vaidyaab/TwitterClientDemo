@@ -64,4 +64,11 @@
                             parameters:
                                 (NSDictionary*) params;
 
+- (AFHTTPRequestOperation *)getUserWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params;
+
 @end

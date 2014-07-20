@@ -163,4 +163,19 @@
               failure: failure];
 }
 
+- (AFHTTPRequestOperation *)getUserWithSuccess:
+                                (void (^)(AFHTTPRequestOperation *operation, id responseObject))success
+                            failure:
+                                (void (^)(AFHTTPRequestOperation *operation, NSError *error))failure
+                            parameters:
+                                (NSDictionary*) params {
+    
+    NSString *getString = [NSString stringWithFormat:@"1.1/users/show.json?screen_name=%@",[params objectForKey:@"screenName"]];
+    
+    return [self GET:getString
+           parameters:nil
+              success: success
+              failure: failure];
+}
+
 @end

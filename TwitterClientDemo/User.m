@@ -10,6 +10,7 @@
 #import "TwitterAPIClient.h"
 NSString * const UserLoggedInNotification = @"UserLoggedInNotification";
 NSString * const UserLoggedOutNotification = @"UserLoggedOutNotification";
+NSString * const ShowProfileNotification = @"ShowProfileNotification";
 NSString * const currentUserKey = @"currentUserKey";
 
 @implementation User
@@ -66,6 +67,9 @@ static User* _currentUser = nil;
         self.screenName = data[@"screen_name"];
         self.profileImageUrl = data[@"profile_image_url"];
         self.backgroundImageURL = data[@"profile_background_image_url"];
+        self.followersCount = (int)data[@"followers_count"];
+        self.followingCount = (int)data[@"friends_count"];
+        self.tweetsCount = (int)data[@"statuses_count"];
     }
     return self;
 }
@@ -85,6 +89,10 @@ static User* _currentUser = nil;
     self.screenName = [decoder decodeObjectForKey:@"screen_name"];
     self.profileImageUrl = [decoder decodeObjectForKey:@"profile_image_url"];
     self.backgroundImageURL = [decoder decodeObjectForKey:@"profile_background_image_url"];
+    self.followersCount = [decoder decodeIntegerForKey:@"followers_count"];
+    self.followingCount = [decoder decodeIntegerForKey:@"friends_count"];
+    self.tweetsCount = [decoder decodeIntegerForKey:@"statuses_count"];
+    
     
     return self;
 }
@@ -96,6 +104,9 @@ static User* _currentUser = nil;
     [encoder encodeObject:self.screenName forKey:@"screen_name"];
     [encoder encodeObject:self.profileImageUrl forKey:@"profile_image_url"];
     [encoder encodeObject:self.backgroundImageURL forKey:@"profile_background_image_url"];
+    [encoder encodeInteger:self.followersCount forKey:@"followers_count"];
+    [encoder encodeInteger:self.followingCount forKey:@"friends_count"];
+    [encoder encodeInteger:self.tweetsCount forKey:@"statuses_count"];
 }
 
 

@@ -10,6 +10,7 @@
 
 extern NSString * const UserLoggedInNotification;
 extern NSString * const UserLoggedOutNotification;
+extern NSString * const ShowProfileNotification;
 extern NSString * const currentUserKey;
 
 @interface User : NSObject <NSCoding>
@@ -20,6 +21,9 @@ extern NSString * const currentUserKey;
 @property (strong, nonatomic) NSString *profileImageUrl;
 @property (strong, nonatomic) NSString *screenName;
 @property (strong, nonatomic) NSString *backgroundImageURL;
+@property (assign, nonatomic) int followersCount;
+@property (assign, nonatomic) int followingCount;
+@property (assign, nonatomic) int tweetsCount;
 
 +(User*) currentUser;
 +(void) setCurrentUser;

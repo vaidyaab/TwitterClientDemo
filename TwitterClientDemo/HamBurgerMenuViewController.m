@@ -112,7 +112,13 @@
             NSLog(@"Mentions clicked!");
             break;
         case 2:
+        {
             NSLog(@"profile clicked!");
+            
+            NSNotification *notification = [NSNotification notificationWithName:ShowProfileNotification object:nil];
+            [[NSNotificationCenter defaultCenter] postNotification:notification];
+            [self onHBMenuTap];
+        }
             break;
         case 3:
             [self onHBMenuTap];

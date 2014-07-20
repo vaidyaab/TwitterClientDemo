@@ -14,6 +14,7 @@
 #import <ODRefreshControl/ODRefreshControl.h>
 #import "TweetDetailViewController.h"
 #import "ComposeTweetViewController.h"
+#import "ProfileViewController.h"
 
 @interface TimelineViewController ()
 
@@ -30,6 +31,7 @@
     if (self) {
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentView) name:UserLoggedInNotification object:nil];
         [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateCurrentView) name:UserLoggedOutNotification object:nil];
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showProfileView) name:ShowProfileNotification object:nil];
     }
     return self;
 }
@@ -194,6 +196,13 @@
     // Dispose of any resources that can be recreated.
 }
 
+-(void) showProfileView {
+    ProfileViewController *pvc = [[ProfileViewController alloc] init];
+    [pvc setUser:[User currentUser]];
+    [self.navigationController pushViewController:pvc animated:YES];
+
+}
+
 - (IBAction)onLoginButton:(id)sender {
     
     [[TwitterAPIClient instance] login];
@@ -219,6 +228,7 @@
 -(void) dealloc{
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UserLoggedInNotification object:nil];
     [[NSNotificationCenter defaultCenter] removeObserver:self name:UserLoggedOutNotification object:nil];
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:ShowProfileNotification object:nil];
 }
 
 @end
