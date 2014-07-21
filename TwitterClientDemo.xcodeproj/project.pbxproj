@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		CC06F010197C4A680007FC93 /* ProfileViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC06F00E197C4A680007FC93 /* ProfileViewController.m */; };
 		CC06F011197C4A680007FC93 /* ProfileViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC06F00F197C4A680007FC93 /* ProfileViewController.xib */; };
+		CC06F014197C882D0007FC93 /* UIImage+ImageEffects.m in Sources */ = {isa = PBXBuildFile; fileRef = CC06F013197C882D0007FC93 /* UIImage+ImageEffects.m */; };
 		CC31073A1962841900746639 /* TweetDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = CC3107381962841900746639 /* TweetDetailViewController.m */; };
 		CC31073B1962841900746639 /* TweetDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = CC3107391962841900746639 /* TweetDetailViewController.xib */; };
 		CC445ADD196BA43F005B566C /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = CC445ADC196BA43F005B566C /* README.md */; };
@@ -61,6 +62,8 @@
 		CC06F00D197C4A680007FC93 /* ProfileViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileViewController.h; path = ../ProfileViewController.h; sourceTree = "<group>"; };
 		CC06F00E197C4A680007FC93 /* ProfileViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileViewController.m; path = ../ProfileViewController.m; sourceTree = "<group>"; };
 		CC06F00F197C4A680007FC93 /* ProfileViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ProfileViewController.xib; sourceTree = "<group>"; };
+		CC06F012197C882D0007FC93 /* UIImage+ImageEffects.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+ImageEffects.h"; sourceTree = "<group>"; };
+		CC06F013197C882D0007FC93 /* UIImage+ImageEffects.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+ImageEffects.m"; sourceTree = "<group>"; };
 		CC3107371962841900746639 /* TweetDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TweetDetailViewController.h; sourceTree = "<group>"; };
 		CC3107381962841900746639 /* TweetDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TweetDetailViewController.m; sourceTree = "<group>"; };
 		CC3107391962841900746639 /* TweetDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = TweetDetailViewController.xib; path = TwitterClientDemo/TweetDetailViewController.xib; sourceTree = "<group>"; };
@@ -282,6 +285,8 @@
 		CCB6AA94195F792900DB2275 /* API */ = {
 			isa = PBXGroup;
 			children = (
+				CC06F012197C882D0007FC93 /* UIImage+ImageEffects.h */,
+				CC06F013197C882D0007FC93 /* UIImage+ImageEffects.m */,
 				CC9CDA0D195F8964001CDC41 /* TwitterAPIClient.h */,
 				CC9CDA0E195F8964001CDC41 /* TwitterAPIClient.m */,
 			);
@@ -432,6 +437,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CC8A7CB51960A3DC00A5E9F0 /* TimelineViewController.m in Sources */,
+				CC06F014197C882D0007FC93 /* UIImage+ImageEffects.m in Sources */,
 				CCB6AA76195F777D00DB2275 /* AppDelegate.m in Sources */,
 				CC496CEE195FD74C004EAEB6 /* User.m in Sources */,
 				CC7628E61963DF2F00D280E5 /* ComposeTweetViewController.m in Sources */,

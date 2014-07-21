@@ -37,6 +37,8 @@ static User* _currentUser = nil;
     
     [[TwitterAPIClient instance] userDataWithSuccess:
                                     ^(AFHTTPRequestOperation *operation, id responseObject) {
+                                        
+                                        //NSLog(@"User oject: %@", responseObject);
                                         _currentUser = [[User alloc] initWithDictionary: responseObject];
                                         NSData *data = [NSKeyedArchiver archivedDataWithRootObject:_currentUser];
                                         [[NSUserDefaults standardUserDefaults] setObject:data forKey:currentUserKey];
@@ -62,14 +64,15 @@ static User* _currentUser = nil;
     self = [super init];
     if(self){
         self.description = data[@"description"];
-        self.userId = (int)data[@"id"];
+        self.userId = [data[@"id"] integerValue];
         self.name = data[@"name"];
         self.screenName = data[@"screen_name"];
         self.profileImageUrl = data[@"profile_image_url"];
-        self.backgroundImageURL = data[@"profile_background_image_url"];
-        self.followersCount = (int)data[@"followers_count"];
-        self.followingCount = (int)data[@"friends_count"];
-        self.tweetsCount = (int)data[@"statuses_count"];
+        self.backgroundImageURL = data[@"profile_banner_url"];
+        NSLog(@"bg image here: %@",self.backgroundImageURL);
+        self.followersCount = [data[@"followers_count"] integerValue];
+        self.followingCount = [data[@"friends_count"] integerValue];
+        self.tweetsCount = [data[@"statuses_count"] integerValue];
     }
     return self;
 }
@@ -88,7 +91,7 @@ static User* _currentUser = nil;
     self.name = [decoder decodeObjectForKey:@"name"];
     self.screenName = [decoder decodeObjectForKey:@"screen_name"];
     self.profileImageUrl = [decoder decodeObjectForKey:@"profile_image_url"];
-    self.backgroundImageURL = [decoder decodeObjectForKey:@"profile_background_image_url"];
+    self.backgroundImageURL = [decoder decodeObjectForKey:@"profile_banner_url"];
     self.followersCount = [decoder decodeIntegerForKey:@"followers_count"];
     self.followingCount = [decoder decodeIntegerForKey:@"friends_count"];
     self.tweetsCount = [decoder decodeIntegerForKey:@"statuses_count"];
@@ -103,7 +106,7 @@ static User* _currentUser = nil;
     [encoder encodeObject:self.name forKey:@"name"];
     [encoder encodeObject:self.screenName forKey:@"screen_name"];
     [encoder encodeObject:self.profileImageUrl forKey:@"profile_image_url"];
-    [encoder encodeObject:self.backgroundImageURL forKey:@"profile_background_image_url"];
+    [encoder encodeObject:self.backgroundImageURL forKey:@"profile_banner_url"];
     [encoder encodeInteger:self.followersCount forKey:@"followers_count"];
     [encoder encodeInteger:self.followingCount forKey:@"friends_count"];
     [encoder encodeInteger:self.tweetsCount forKey:@"statuses_count"];
