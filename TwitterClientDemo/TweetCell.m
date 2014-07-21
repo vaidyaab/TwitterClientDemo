@@ -12,6 +12,7 @@
 #import "ComposeTweetViewController.h"
 #import "TwitterAPIClient.h"
 #import "TimelineViewController.h"
+#import "ProfileViewController.h"
 
 @interface TweetCell()
 @property (weak, nonatomic) IBOutlet UIImageView *profileImageView;
@@ -68,6 +69,13 @@
     self.origTweet = tweet;
     self.parent = parent;
     
+    UITapGestureRecognizer *profileImageTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postProfileImageTapped:)];
+    profileImageTap.numberOfTapsRequired = 1;
+    profileImageTap.numberOfTouchesRequired = 1;
+    [self.profileImageView addGestureRecognizer:profileImageTap];
+    [self.profileImageView setUserInteractionEnabled:YES];
+    
+    
     UITapGestureRecognizer *replyTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(postReplyImageTapped:)];
     replyTap.numberOfTapsRequired = 1;
     replyTap.numberOfTouchesRequired = 1;
@@ -96,6 +104,25 @@
         self.retweetedBy.text = @"";
         [self.retweetedByImageView setImage:nil];
     }
+}
+
+-(void) postProfileImageTapped :(UIGestureRecognizer *)gestureRecognizer {
+
+    NSMutableDictionary *tweetParams = [[NSMutableDictionary alloc] init];
+    [tweetParams setObject:[self.origTweet handle] forKey:@"screenName"];
+    
+    [[TwitterAPIClient instance] getUserWithSuccess:^(AFHTTPRequestOperation *operation, id responseObject) {
+        
+        ProfileViewController *pvc = [[ProfileViewController alloc]init];
+        User *user = [[User alloc] initWithDictionary:responseObject];
+        [pvc setUser:user];
+        [self.parent.navigationController pushViewController:pvc animated:YES];
+                            
+        
+    } failure:^(AFHTTPRequestOperation *operation, NSError *error) {
+        NSLog(@"failed to get user data for profile view");
+    } parameters:tweetParams];
+    
 }
 
 - (void) postReplyImageTapped :(UIGestureRecognizer *)gestureRecognizer {
