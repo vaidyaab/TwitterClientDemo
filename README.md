@@ -18,7 +18,11 @@ Completed user stories:
  * [x] Optional: When composing, you should have a countdown in the upper right for the tweet limit.
  * [x] Optional: Retweeting and favoriting should increment the retweet and favorite count.
  * [x] Optional: User should be able to unretweet and unfavorite and should decrement the retweet and favorite count.
- * [x] Optional: Replies should be prefixed with the username and the reply_id should be set when posting the tweet,
+ * [x] Optional: Replies should be prefixed with the username and the reply_id should be set when posting the tweet
+ * [x] Optional: Hamburger menu
+ * [x] Optional: click on timeline should load timeline view
+ * [x] Optional: click on profile should load profile view, with basic user stats
+ * [x] Optional: click on any user's profile image should load profile view, with basic user stats
 
 
 Walkthrough of all user stories:

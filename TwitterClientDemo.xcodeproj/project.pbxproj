@@ -43,6 +43,7 @@
 		CCB6AA81195F777E00DB2275 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CCB6AA69195F777D00DB2275 /* UIKit.framework */; };
 		CCB6AA89195F777E00DB2275 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = CCB6AA87195F777E00DB2275 /* InfoPlist.strings */; };
 		CCB6AA8B195F777E00DB2275 /* TwitterClientDemoTests.m in Sources */ = {isa = PBXBuildFile; fileRef = CCB6AA8A195F777E00DB2275 /* TwitterClientDemoTests.m */; };
+		CCDC51CA197CCE0A00A2DF10 /* TwitterReduxDemo.gif in Resources */ = {isa = PBXBuildFile; fileRef = CCDC51C9197CCE0A00A2DF10 /* TwitterReduxDemo.gif */; };
 		E7AB86D423F14F92AD724CB7 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 446EBA5D71684D8AA66C1897 /* libPods.a */; };
 /* End PBXBuildFile section */
 
@@ -110,6 +111,7 @@
 		CCB6AA86195F777E00DB2275 /* TwitterClientDemoTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "TwitterClientDemoTests-Info.plist"; sourceTree = "<group>"; };
 		CCB6AA88195F777E00DB2275 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		CCB6AA8A195F777E00DB2275 /* TwitterClientDemoTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TwitterClientDemoTests.m; sourceTree = "<group>"; };
+		CCDC51C9197CCE0A00A2DF10 /* TwitterReduxDemo.gif */ = {isa = PBXFileReference; lastKnownFileType = image.gif; path = TwitterReduxDemo.gif; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		CCB6AA59195F777D00DB2275 = {
 			isa = PBXGroup;
 			children = (
+				CCDC51C9197CCE0A00A2DF10 /* TwitterReduxDemo.gif */,
 				CC445ADC196BA43F005B566C /* README.md */,
 				CC445ADE196BA711005B566C /* twitterdemo.gif */,
 				CCB6AA6B195F777D00DB2275 /* TwitterClientDemo */,
@@ -378,6 +381,7 @@
 				CC65D89F197351DB00C8D738 /* hamburgerMenu.png in Resources */,
 				CCB6AA78195F777D00DB2275 /* Images.xcassets in Resources */,
 				CC31073B1962841900746639 /* TweetDetailViewController.xib in Resources */,
+				CCDC51CA197CCE0A00A2DF10 /* TwitterReduxDemo.gif in Resources */,
 				CC7628E71963DF2F00D280E5 /* ComposeTweetViewController.xib in Resources */,
 				CC8A7CBF1960EC6300A5E9F0 /* TweetCell.xib in Resources */,
 				CC445ADF196BA711005B566C /* twitterdemo.gif in Resources */,
